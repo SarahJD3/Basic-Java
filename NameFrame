@@ -1,0 +1,76 @@
+/*
+File name: NameFrame.java
+Author: Sarah Schoem
+Created: 13Jul2024
+Version: 1.0
+Description:
+    This code generates a window requesting users first and last name, and then displays the full name of the user in the window.
+*/
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class NameFrame extends JFrame {
+    private JTextField firstNameField;
+    private JTextField lastNameField;
+    private JTextField fullNameField;
+    private JButton generateButton;
+    private JButton clearButton;
+    private JLabel authorLabel;
+
+    public NameFrame() {
+        setTitle("Name Generator");
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(5, 2));
+
+        firstNameField = new JTextField();
+        lastNameField = new JTextField();
+        fullNameField = new JTextField();
+        fullNameField.setEditable(false);
+
+        generateButton = new JButton("Generate Full Name");
+        clearButton = new JButton("Clear");
+
+        authorLabel = new JLabel("Author: Sarah Schoem");
+
+        add(new JLabel("First Name:"));
+        add(firstNameField);
+        add(new JLabel("Last Name:"));
+        add(lastNameField);
+        add(new JLabel("Full Name:"));
+        add(fullNameField);
+        add(generateButton);
+        add(clearButton);
+        add(authorLabel);
+
+        generateButton.addActionListener(new ActionHandler());
+        clearButton.addActionListener(new ActionHandler());
+    }
+
+    private class ActionHandler implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == generateButton) {
+                String firstName = firstNameField.getText();
+                String lastName = lastNameField.getText();
+                fullNameField.setText(firstName + " " + lastName);
+            } else if (e.getSource() == clearButton) {
+                firstNameField.setText("");
+                lastNameField.setText("");
+                fullNameField.setText("");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new NameFrame().setVisible(true);
+            }
+        });
+    }
+}
