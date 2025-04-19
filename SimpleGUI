@@ -1,0 +1,43 @@
+/* 
+File name: SimpleGUI.java
+Author: Sarah Schoem
+Created: 29Jul/2024
+Version: 1.0
+Description:
+    This code creates a simple GUI that requests users to click a button and shows a message after the button has been clicked.
+*/
+
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class SimpleGUI {
+
+    public static void main(String[] args) {
+        // Create the frame
+        JFrame frame = new JFrame("My GUI");
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // Create the button
+        JButton button = new JButton("Click Me");
+        
+        // Add an ActionListener to the button
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Display a message when the button is clicked
+                JOptionPane.showMessageDialog(frame, "Button was clicked!");
+            }
+        });
+        
+        // Add the button to the frame
+        frame.add(button);
+        
+        // Make the frame visible
+        frame.setVisible(true);
+    }
+}
