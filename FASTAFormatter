@@ -1,0 +1,39 @@
+/*
+File name: FASTAFormatter.java
+Program author name: Sarah Schoem
+Description: Continuously prompt for clone name and DNA sequence until user enters "q".
+Only valid DNA characters (A, T, G, C in any case) are accepted.
+*/
+
+import java.util.Scanner;
+
+public class FASTAFormatter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            // Prompt for clone name
+            System.out.print("Enter a clone name (or 'q' to quit): ");
+            String sequenceIdentifier = scanner.nextLine().trim();
+            if (sequenceIdentifier.equalsIgnoreCase("q")) {
+                break;
+            }
+
+            // Prompt for DNA sequence
+            System.out.print("Enter the DNA sequence for the clone name (A, T, C, G only): ");
+            String DNAsequence = scanner.nextLine().trim();
+
+            // Check if DNA sequence contains only valid characters
+            if (DNAsequence.matches("[AaTtGgCc]+")) {
+                // Print in FASTA format
+                System.out.println(">" + sequenceIdentifier);
+                System.out.println(DNAsequence);
+            } else {
+                System.out.println("Invalid DNA sequence. Please enter only A, T, G, or C.");
+            }
+        }
+
+        scanner.close();
+        System.out.println("Program exited.");
+    }
+}
